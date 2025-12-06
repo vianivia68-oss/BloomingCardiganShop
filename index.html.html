@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cute Knitting Shop | Produk</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --pink-soft:#FFD1E8;
+    --pink-strong:#FF8FB1;
+    --pink-dark:#D81B60;
+    --purple:#6A1B9A;
+    --bg:#FFF5FB;
+}
+
+body{
+    margin:0;
+    font-family:"Quicksand", sans-serif;
+    background:var(--bg);
+}
+
+/* ===============================
+        HEADER CUTE
+=============================== */
+header{
+    background:linear-gradient(90deg, #FFC2E0, #b11f6a);
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 4px 15px rgba(0,0,0,0.12);
+    border-bottom-left-radius:20px;
+    border-bottom-right-radius:20px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+    box-shadow:0 0 10px rgba(255,255,255,0.8);
+}
+
+.shop-name{
+    font-size:26px;
+    font-weight:700;
+    color:white;
+    text-shadow:0 2px 4px rgba(0,0,0,0.25);
+}
+
+.rating{
+    font-size:14px;
+    color:white;
+    margin-top:3px;
+    opacity:0.9;
+}
+
+nav a{
+    margin:0 14px;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    transition:0.2s;
+}
+
+nav a:hover{
+    color:#4A148C;
+    text-shadow:0 0 8px white;
+}
+
+/* ===============================
+        GRID PRODUK
+=============================== */
+.container{
+    padding:25px;
+}
+
+h2{
+    color:#C2185B;
+    font-size:24px;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
+    gap:22px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:13px;
+    box-shadow:0 6px 15px rgba(255,140,160,0.25);
+    transition:0.25s ease;
+    border:2px solid transparent;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border:2px solid #FFB6D5;
+    box-shadow:0 15px 25px rgba(255,130,170,0.35);
+}
+
+.card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.card h3{
+    font-size:17px;
+    margin:10px 0 5px;
+    font-weight:700;
+    color:#AD1457;
+}
+
+.card p{
+    font-size:13px;
+    color:#555;
+    height:38px;
+    overflow:hidden;
+    font-weight:500;
+}
+
+.price{
+    color:var(--pink-dark);
+    font-weight:700;
+    margin-top:4px;
+    font-size:14px;
+}
+
+.stock{
+    color:#444;
+    font-size:12.5px;
+    margin-bottom:6px;
+}
+
+/* ===============================
+        BUTTON AESTHETIC
+=============================== */
+.btn-beli,
+.btn-detail{
+    padding:8px;
+    border:none;
+    border-radius:12px;
+    width:100%;
+    margin-top:8px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:"Quicksand";
+}
+
+.btn-beli{
+    background:linear-gradient(90deg, #FF8FB1, #FF5C8A);
+    color:white;
+}
+
+.btn-detail{
+    background:#FFD1E8;
+    color:#AD1457;
+}
+
+.btn-beli:hover{
+    background:linear-gradient(90deg, #FF5C8A, #FF2F74);
+}
+
+.btn-detail:hover{
+    background:#FFB6D5;
+}
+
+/* ===============================
+        MODAL / POPUP
+=============================== */
+.modal{
+    display:none;
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(3px);
+    justify-content:center;
+    align-items:center;
+    padding:15px;
+}
+
+.modal-content{
+    background:white;
+    width:85%;
+    max-width:430px;
+    padding:22px;
+    border-radius:22px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.2);
+    animation:popup .25s ease;
+    max-height:80vh;
+    overflow-y:auto;
+}
+
+@keyframes popup{
+    from{transform:scale(0.7); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
+.modal-content h2{
+    color:#C2185B;
+}
+
+.close-btn{
+    background:#c61349;
+    padding:10px;
+    border:none;
+    border-radius:12px;
+    font-weight:700;
+    cursor:pointer;
+    width:100%;
+    margin-top:15px;
+}
+
+.close-btn:hover{
+    background:#FF5C8A;
+    color:white;
+}
+body {
+    background-image: url('images/2222.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* background diam */
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-area">
+      <img src="images/logo.jpeg" class="logo">
+      <div>
+          <div class="shop-name">Bloom Cardigan Shop</div>
+          <div class="rating">⭐ 4.9 / 5 (1234 Reviews)</div>
+      </div>
+  </div>
+
+  <nav>
+      <a href="aboutus.html">About Us</a>
+      <a href="basket.html">Basket</a>
+      <a href="history.html">History</a>
+      <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+    <h2>🫧 Semua Produk Rajut Cute</h2>
+    <div class="grid" id="productList"></div>
+</div>
+
+<!-- POP-UP -->
+<div class="modal" id="modal">
+    <div class="modal-content" id="modalContent"></div>
+</div>
+
+<script>
+/* ========== DATA PRODUK (1–55) ========== */
+
+let products = [
+{id:1,name:"Aurella Soft Knit Cardigan",
+description:"Cardigan rajut lembut dengan tekstur halus, nyaman dipakai harian.",
+price:250000,stock:10,image:"images/1.jpeg",rating:4.8},
+
+{id:2,name:"Lynette Pastel Cardigan",
+description:"Cardigan lightweight berpotongan klasik yang manis dan effortless.",
+price:350000,stock:15,image:"images/2.jpeg",rating:4.9},
+
+{id:3,name:"Velina Rib Cardigan",
+description:"Cardigan rajut minimalis untuk tampilan feminim modern.",
+price:100000,stock:12,image:"images/3.jpeg",rating:4.7},
+
+{id:4,name:"Mielle Crop Knit",
+description:"Cardigan crop rajut halus yang cocok untuk ootd casual.",
+price:350000,stock:8,image:"images/4.jpeg",rating:4.6},
+
+{id:5,name:"Floresa Airy Knit",
+description:"Cardigan flowy rajutan tipis, adem untuk cuaca tropis.",
+price:450000,stock:9,image:"images/5.jpeg",rating:4.9},
+
+{id:6,name:"Seraphine Wave Knit",
+description:"Cardigan panjang dengan detail wave knit elegan.",
+price:180000,stock:7,image:"images/6.jpeg",rating:4.5},
+
+{id:7,name:"Pastella Sweet Knit",
+description:"Cardigan warna pastel yang lembut dan manis.",
+price:200000,stock:25,image:"images/7.jpeg",rating:4.8},
+
+{id:8,name:"Livie Clasic V-Knit",
+description:"Cardigan V-neck klasik yng timeless dan mudah dipadukan.",
+price:230000,stock:14,image:"images/8.jpeg",rating:4.7},
+
+{id:9,name:"Eclair Eyelet Cardigan",
+description:"Cardigan dengan detail eyelet cantik dan feminim.",
+price:220000,stock:20,image:"images/9.jpeg",rating:4.6},
+
+{id:10,name:"Bella Puff-Sleve Knit",
+description:"Cardigan rajut dengan lengan balon ringan.",
+price:110000,stock:10,image:"images/10.jpeg",rating:4.8},
+
+{id:11,name:"Daily Ease Basic Knit",
+description:"Cardigan rajut ringan untuk aktivitas santai.",
+price:100000,stock:10,image:"images/11.jpeg",rating:4.5},
+
+{id:12,name:"Cozyhug Chunky Knit",
+description:"Cardigan oversize rajut chunky untuk look cozy.",
+price:110000,stock:12,image:"images/12.jpeg",rating:4.6},
+
+{id:13,name:"Pocketday Knit Cardigan",
+description:"Cardigan rajut dengan pita depan yang cute.",
+price:120000,stock:8,image:"images/13.jpeg",rating:4.7},
+
+{id:14,name:"UrbanButton Knit",
+description:"Cardigan button-up simpel untuk office casual.",
+price:200000,stock:15,image:"images/14.jpeg",rating:4.5},
+
+{id:15,name:"Breathlite Knit Cardigan",
+description:"Rajutan breathable yang nyaman sepanjang hari.",
+price:130000,stock:10,image:"images/15.jpeg",rating:4.6},
+
+{id:16,name:"LooseLoom Knitwear",
+description:"Cardigan rajut loose fit untuk tampilan santai.",
+price:80000,stock:20,image:"images/16.jpeg",rating:4.7},
+
+{id:17,name:"FreshCrop Knit",
+description:"Cardigan crop casual untuk look muda dan segar.",
+price:220000,stock:18,image:"images/17.jpeg",rating:4.6},
+
+{id:18,name:"DailyClean Knit",
+description:"Cardigan polos dengan gaya clean dan rapi.",
+price:105000,stock:12,image:"images/18.jpeg",rating:4.8},
+
+{id:19,name:"Linerib Soft Cardigan",
+description:"Cardigan rajut dengan garis halus bertekstur simpel.",
+price:115000,stock:14,image:"images/19.jpeg",rating:4.7},
+
+{id:20,name:"LayerEase Long Knit",
+description:"Cardigan ringan untuk kebutuhan layering.",
+price:125000,stock:8,image:"images/20.jpeg",rating:4.9},
+
+/* =======================
+      PRODUK 21–55
+======================= */
+{id:21,name:"Pristine Luxe Knit",
+description:"Rajutan premium dengan benang halus yang terlihat mewah.",
+price:135000,stock:10,image:"images/21.jpeg",rating:4.6},
+
+{id:22,name:"Eleganza Longline Knit",
+description:"Cardigan longline elegan untuk acara semi formal.",
+price:145000,stock:15,image:"images/22.jpeg",rating:4.8},
+
+{id:23,name:"Noble Cable Knit",
+description:"Cardigan cable knit crop yang klasik dan modern.",
+price:155000,stock:9,image:"images/23.jpeg",rating:4.7},
+
+{id:24,name:"Silhoutte Slim Knit",
+description:"Cardigan slim-fit halus yang merapikan siluet tubuh.",
+price:165000,stock:12,image:"images/24.jpeg",rating:4.9},
+
+{id:25,name:"Opaline Openfront Knit",
+description:"Cardigan openfront premium yang refinit.",
+price:175000,stock:11,image:"images/25.jpeg",rating:4.6},
+
+{id:26,name:"Glossoft Shine Knit",
+description:"Cardigan knit bertekstur glossy lembut.",
+price:185000,stock:13,image:"images/26.jpeg",rating:4.7},
+
+{id:27,name:"Velour Collar Knit",
+description:"Cardigan berkerah lembut untuk look sophisticated.",
+price:195000,stock:9,image:"images/27.jpeg",rating:4.8},
+
+{id:28,name:"Helitage Rib Knit",
+description:"Cardigan Rib premium yang timeless.",
+price:205000,stock:10,image:"images/28.jpeg",rating:4.9},
+
+{id:29,name:"Wooltouch Premium Knit",
+description:"Cardigan wool-touch yang hangat namun ringan.",
+price:215000,stock:8,image:"images/29.jpeg",rating:4.7},
+
+{id:30,name:"Metalique Button Knit",
+description:"Cardigan minimal dengan aksen kancing metal.",
+price:225000,stock:12,image:"images/30.jpeg",rating:4.8},
+
+{id:31,name:"Korean Crop Knit",
+description:"Cardigan crop ala korea yang chic dan cute.",
+price:235000,stock:10,image:"images/31.jpeg",rating:4.6},
+
+{id:32,name:"Soft Pastel Korean Knit",
+description:"Cardigan warna pastel ala korea yang fresh.",
+price:245000,stock:11,image:"images/32.jpeg",rating:4.7},
+
+{id:33,name:"Fluffy Korean Knit",
+description:"Cardigan fluffy super lembut dan estetik.",
+price:255000,stock:9,image:"images/33.jpeg",rating:4.9},
+
+{id:34,name:"Slim Aura Knit",
+description:"Cardigan slim fit bergaya korea, bikin look ramping.",
+price:265000,stock:14,image:"images/34.jpeg",rating:4.8},
+
+{id:35,name:"Stripe Korean Knit",
+description:"Cardigan striped modern untuk OOTD casual.",
+price:275000,stock:7,image:"images/35.jpeg",rating:4.6},
+
+{id:36,name:"Sakura Tone Knit",
+description:"Cardigan warna sakura vibes korea.",
+price:285000,stock:13,image:"images/36.jpeg",rating:4.7},
+
+{id:37,name:"K-Oversezed Cozy Knit",
+description:"Cardigan oversized ala korea yang nyaman."
+,price:295000,stock:10,image:"images/37.jpeg",rating:4.8},
+
+{id:38,name:"Big Button K-Cardi",
+description:"Cardigan dengan kancing besar yang eye-catching.",
+price:205000,stock:15,image:"images/38.jpeg",rating:4.9},
+
+{id:39,name:"Mini Crop K-knit",
+description:"Cardigan crop lengan panjang untuk gaya muda.",
+price:215000,stock:8,image:"images/39.jpeg",rating:4.7},
+
+{id:40,name:"SoftTexture Korean Knit",
+description:"Cardigan texture soft ala korea yang simple.",
+price:225000,stock:12,image:"images/40.jpeg",rating:4.8},
+
+{id:41,name:"ChunkWave Knit",
+description:"Cardigan chunky tebal untuk look statement.",
+price:235000,stock:11,image:"images/41.jpeg",rating:4.6},
+
+{id:42,name:"Patch Art Knit Wear",
+description:"Cardigan patchwork rajut unit dan artistik.",
+price:245000,stock:13,image:"images/42.jpeg",rating:4.7},
+
+{id:43,name:"Stip Oversized Knit",
+description:"Cardigan oversized bergaya streetwear."
+,price:255000,stock:7,image:"images/43.jpeg",rating:4.8},
+
+{id:44,name:"Earthone Meadow Knit",
+description:"Cardigan rajut warna soft white yang natural."
+,price:265000,stock:9,image:"images/44.jpeg",rating:4.6},
+{id:45,name:"Produk 45",description:"Deskripsi produk 45",price:375000,stock:14,image:"images/45.jpeg",rating:4.7},
+
+{id:46,name:"BigPocket Utility Knit"
+,description:"Cardigan big-pocket fungsional dan stylist."
+,price:285000,stock:12,image:"images/46.jpeg",rating:4.8},
+
+{id:47,name:"Waffle Texture Knit",
+description:"Cardigan waffle knit dengan texture unik,",
+price:295000,stock:10,image:"images/47.jpeg",rating:4.9},
+
+{id:48,name:"Dual Tone Knit",
+description:"Cardigan 2 warna dengan kesan playfull",
+price:205000,stock:8,image:"images/48.jpeg",rating:4.7},
+
+{id:49,name:"GeoPattern Knit",
+description:" Cardigan motif geometrik dengan nuansa artsy.",
+price:215000,stock:11,image:"images/49.jpeg",rating:4.8},
+
+{id:50,name:"HoodieKnit Urban",
+description:"Cardigan hoodie knit yang cozy dan stylish.",
+price:225000,stock:9,image:"images/50.jpeg",rating:4.9},
+
+{id:51,name:"OversizeFlow Knit",
+description:"Cardigan long oversized untuk look urban.",
+price:235000,stock:12,image:"images/51.jpeg",rating:4.7},
+
+{id:52,name:"GradientSoft Knit",
+description:"Cardigan rajut gradasi yang unik dan lembut dipandang.",
+price:245000,stock:15,image:"images/52.jpeg",rating:4.8},
+
+{id:53,name:"RelaxLoft Knit",
+description:"Cardigan soft-knit dengan lengan relaxed.",
+price:255000,stock:10,image:"images/53.jpeg",rating:4.9},
+
+{id:54,name:"PrimeRib Luxe Knit",
+description:"Cardigan ribbed premium yang terlihat mahal",
+price:265000,stock:8,image:"images/54.jpeg",rating:4.6},
+
+{id:55,name:"StatementButton Knit",
+description:" Cardigan dengan kancing statement yang unik",
+price:275000,stock:12,image:"images/55.jpeg",rating:4.8}
+];
+
+/* ========== TAMPILKAN PRODUK ========== */
+function loadProducts(){
+    let wrap = document.getElementById("productList");
+    wrap.innerHTML = "";
+
+    products.forEach(p => {
+        let shortDesc = p.description.length > 35 
+                        ? p.description.substring(0,35) + "..." 
+                        : p.description;
+
+        wrap.innerHTML += `
+        <div class="card">
+            <img src="${p.image}">
+            <h3>${p.name}</h3>
+            <p>${shortDesc}</p>
+            <div class="price">Rp ${p.price.toLocaleString()}</div>
+            <div class="stock">Stok: ${p.stock}</div>
+
+            <button class="btn-detail" onclick="showDetail(${p.id})">Detail</button>
+            <button class="btn-beli" onclick="beli(${p.id})">Beli</button>
+        </div>`;
+    });
+}
+
+/* ========== POP-UP ========== */
+function showDetail(id){
+    const p = products.find(x => x.id === id);
+
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("modalContent");
+
+    content.innerHTML = `
+        <h2>${p.name}</h2>
+        <img src="${p.image}" style="width:100%;border-radius:18px; margin-bottom:12px;">
+        <p style="font-size:15px;color:#555;">${p.description}</p>
+        <p><b>Harga:</b> Rp ${p.price.toLocaleString()}</p>
+        <p><b>Stok:</b> ${p.stock}</p>
+        <button class="close-btn" onclick="closeModal()">Tutup</button>
+    `;
+    modal.style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onclick = function(e){
+    if(e.target.id === "modal"){
+        closeModal();
+    }
+}
+
+/* ========== FUNGSI BELI ========== */
+function beli(id){
+    const product = products.find(p => p.id === id);
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let existing = cart.find(item => item.id === id);
+
+    if(existing){
+        existing.qty += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("🧺 '" + product.name + "' berhasil ditambahkan ke Basket!");
+}
+
+loadProducts();
+</script>
+
+</body>
+</html>
