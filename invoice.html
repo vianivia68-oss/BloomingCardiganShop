@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Pembelian</title>
+
+<style>
+body{
+  background:#fff0f8;
+  font-family:"Poppins", sans-serif;
+  padding:25px;
+}
+h1{
+  text-align:center;
+  color:#ff66aa;
+}
+.card{
+  max-width:750px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+.section{
+  background:#fff7fc;
+  border:2px dashed #ffc3dd;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+.row{
+  margin-bottom:8px;
+  font-size:15px;
+}
+b{ color:#ff3f9f; }
+.btn{
+  width:100%;
+  padding:12px;
+  background:#ff6fb4;
+  border:none;
+  border-radius:10px;
+  color:white;
+  margin-top:15px;
+  font-size:16px;
+  cursor:pointer;
+}
+.btn:hover{
+  background:#ff4f9d;
+}
+</style>
+</head>
+<body>
+
+<h1>🧾 Invoice Pembelian</h1>
+
+<div class="card" id="invoiceBox">
+  <!-- DIISI OLEH JAVASCRIPT -->
+</div>
+
+<button class="btn" onclick="location.href='history.html'">📜 Lihat History</button>
+<button class="btn" onclick="location.href='shop.html'">🏠 Kembali ke Toko</button>
+
+<script>
+// LOAD INVOICE
+const invoice = JSON.parse(localStorage.getItem("invoiceNow")) || null;
+
+function loadInvoice(){
+  const box = document.getElementById("invoiceBox");
+
+  if(!invoice){
+    box.innerHTML = "<p>Invoice tidak ditemukan 😿</p>";
+    return;
+  }
+
+  let listHTML = "";
+  invoice.items.forEach(p => {
+    listHTML += `
+      <div class="row">
+        <b>${p.name}</b><br>
+        Harga: Rp ${p.price.toLocaleString()} × ${p.qty}<br>
+        Subtotal: <b>Rp ${(p.price * p.qty).toLocaleString()}</b>
+      </div>
+      <hr>
+    `;
+  });
+
+  box.innerHTML = `
+    <div class="section">
+      <h3>📌 Data Pembeli</h3>
+      <div class="row">Nama: <b>${invoice.nama}</b></div>
+      <div class="row">Alamat: ${invoice.alamat}</div>
+      <div class="row">Nomor HP: ${invoice.hp}</div>
+    </div>
+
+    <div class="section">
+      <h3>🛍 Produk Dibeli</h3>
+      ${listHTML}
+    </div>
+
+    <div class="section">
+      <h3>💳 Pembayaran</h3>
+      <div class="row">Metode: <b>${invoice.metode}</b></div>
+      ${
+        invoice.metode === "BRIVA" 
+        ? `<div class='row'>Kode BRIVA: <b>${invoice.briva}</b></div>`
+        : `<div class='row'>Pembayaran dilakukan saat barang tiba (COD)</div>`
+      }
+    </div>
+
+    <div class="section">
+      <h3>🚚 Pengiriman</h3>
+      <div class="row">Estimasi Tiba: <b>${invoice.estimasi}</b></div>
+    </div>
+
+    <div class="section">
+      <h3>💰 Total Pembayaran</h3>
+      <div class="row" style="font-size:18px;">
+        <b>Rp ${invoice.total.toLocaleString()}</b>
+      </div>
+    </div>
+  `;
+}
+
+loadInvoice();
+</script>
+
+</body>
+</html>

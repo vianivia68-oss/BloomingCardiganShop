@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keranjang Belanja</title>
+<style>
+body{
+  background:#fff0f8;
+  font-family:"Poppins", sans-serif;
+  padding:25px;
+}
+h1{
+  text-align:center;
+  color:#ff66aa;
+}
+.card{
+  max-width:750px;
+  margin:auto;
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+input, select{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ffc3dd;
+  margin-bottom:12px;
+}
+button{
+  width:100%;
+  padding:12px;
+  background:#ff6fb4;
+  border:none;
+  border-radius:10px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{
+  background:#ff4f9d;
+}
+.list-item{
+  border:2px dashed #ffd3e8;
+  padding:10px;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+.back-btn{
+  background:#ffa6d3;
+  margin-bottom:15px;
+}
+.back-btn:hover{
+  background:#ff8ec7;
+}
+</style>
+</head>
+<body>
+
+<h1>🧺 Keranjang Belanja</h1>
+
+<div class="card">
+
+  <!-- 🔙 TOMBOL KEMBALI -->
+  <button class="back-btn" onclick="location.href='shop.html'">⬅ Kembali ke Toko</button>
+
+  <h3>🛍 Produk dalam Keranjang</h3>
+  <div id="cartList"></div>
+
+  <hr>
+
+  <h3>📋 Form Registrasi Pembeli</h3>
+
+  <input type="text" id="nama" placeholder="Nama Lengkap" required>
+  <input type="text" id="alamat" placeholder="Alamat Lengkap" required>
+  <input type="text" id="hp" placeholder="Nomor HP" required>
+
+  <label><b>Metode Pembayaran</b></label>
+  <select id="metode">
+    <option value="COD">COD (Bayar di Tempat)</option>
+    <option value="BRIVA">BRIVA (Virtual Account)</option>
+  </select>
+
+  <button onclick="checkout()">Checkout</button>
+
+</div>
+
+<script>
+// LOAD KERANJANG
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// TAMPILKAN PRODUK
+function loadCart(){
+  const box = document.getElementById("cartList");
+  if(cart.length === 0){
+    box.innerHTML = "<p>Keranjang masih kosong 😿</p>";
+    return;
+  }
+
+  box.innerHTML = "";
+  cart.forEach(p => {
+    box.innerHTML += `
+      <div class="list-item">
+        <b>${p.name}</b><br>
+        Harga: Rp ${p.price.toLocaleString()}<br>
+        Jumlah: ${p.qty}<br>
+      </div>
+    `;
+  });
+}
+
+loadCart();
+
+// RANDOM ESTIMASI
+function randomEstimasi(){
+  const hari = Math.floor(Math.random() * 4) + 2; // 2–5 hari
+  return `${hari} hari`;
+}
+
+// RANDOM BRIVA
+function generateBriva(){
+  return "77880" + Math.floor(10000000 + Math.random()*90000000);
+}
+
+function checkout(){
+  if(cart.length === 0){
+    alert("Keranjang masih kosong!");
+    return;
+  }
+
+  const nama = document.getElementById("nama").value;
+  const alamat = document.getElementById("alamat").value;
+  const hp = document.getElementById("hp").value;
+  const metode = document.getElementById("metode").value;
+
+  if(!nama || !alamat || !hp){
+    alert("Isi semua data pembeli terlebih dahulu!");
+    return;
+  }
+
+  const estimasi = randomEstimasi();
+
+  let briva = "-";
+  if(metode === "BRIVA"){
+    briva = localStorage.getItem("brivaCode") || generateBriva();
+    localStorage.setItem("brivaCode", briva);
+  } else {
+    localStorage.removeItem("brivaCode");
+  }
+
+  // HITUNG TOTAL
+  let total = 0;
+  cart.forEach(p => total += p.price * p.qty);
+
+  // BUAT DATA INVOICE
+  const invoice = {
+    id: Date.now(),
+    nama,
+    alamat,
+    hp,
+    metode,
+    briva,
+    estimasi,
+    items: cart,
+    total
+  };
+
+  // SIMPAN KE HISTORI
+  let history = JSON.parse(localStorage.getItem("history")) || [];
+  history.push(invoice);
+  localStorage.setItem("history", JSON.stringify(history));
+
+  // SIMPAN INVOICE SAAT INI
+  localStorage.setItem("invoiceNow", JSON.stringify(invoice));
+
+  // KOSONGKAN KERANJANG
+  localStorage.removeItem("cart");
+
+  // ARAHKAN KE INVOICE
+  location.href = "invoice.html";
+}
+</script>
+
+</body>
+</html>

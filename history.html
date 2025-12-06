@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History | Cute Knitting Shop</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Poppins, sans-serif;
+    background:#FFF4FA;
+}
+
+header{
+    background:#FFB6C1;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.logo-area{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.logo{
+    width:60px;height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.shop-name{
+    font-size:26px;
+    font-weight:700;
+    color:#6A1B9A;
+}
+
+.rating{
+    margin-top:3px;
+    font-size:15px;
+}
+
+nav a{
+    margin:0 12px;
+    text-decoration:none;
+    color:#4A148C;
+    font-weight:600;
+}
+nav a:hover{
+    color:#880E4F;
+}
+
+.container{
+    padding:25px;
+}
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.card h3{
+    margin:0;
+    color:#AD1457;
+}
+
+.btn{
+    margin-top:10px;
+    background:#FF80AB;
+    padding:8px 12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn:hover{
+    background:#F50057;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo-area">
+      <img src="images/logo.jpeg" class="logo">
+      <div>
+          <div class="shop-name">Cute Knitting Shop</div>
+          <div class="rating">⭐ 4.9 / 5 (1234 Reviews)</div>
+      </div>
+  </div>
+
+  <nav>
+      <a href="aboutus.html">About Us</a>
+      <a href="basket.html">Basket</a>
+      <a href="history.html">History</a>
+      <a href="login.html">Logout</a>
+  </nav>
+</header>
+
+<div class="container">
+    <h2 style="color:#AD1457;">📜 Riwayat Invoice</h2>
+
+    <div id="listHistory"></div>
+</div>
+
+<script>
+// ============================================================
+// LOAD DATA HISTORI
+// ============================================================
+let historyData = JSON.parse(localStorage.getItem("history")) || [];
+
+// ============================================================
+// TAMPILKAN LIST HISTORI
+// ============================================================
+function loadHistory(){
+    let wrap = document.getElementById("listHistory");
+
+    if(historyData.length === 0){
+        wrap.innerHTML = "<p>Belum ada histori pembelian.</p>";
+        return;
+    }
+
+    wrap.innerHTML = "";
+
+    historyData.forEach(inv => {
+        wrap.innerHTML += `
+            <div class="card">
+                <h3>Invoice #${inv.invoiceId}</h3>
+                <p><b>Tanggal:</b> ${inv.date}</p>
+                <p><b>Nama:</b> ${inv.customerName}</p>
+                <p><b>Metode Pembayaran:</b> ${inv.payment}</p>
+                <p><b>Total:</b> Rp ${inv.total.toLocaleString()}</p>
+
+                <button class="btn" onclick="lihat(${inv.invoiceId})">Lihat Invoice</button>
+            </div>
+        `;
+    });
+}
+
+function lihat(id){
+    window.location.href = "invoice.html?id=" + id;
+}
+
+loadHistory();
+</script>
+
+</body>
+</html>

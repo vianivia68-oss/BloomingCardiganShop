@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logout...</title>
+
+<style>
+body{
+    background:#fff5fb;
+    font-family:"Poppins", sans-serif;
+    text-align:center;
+    padding-top:100px;
+    color:#ff5fa2;
+}
+.box{
+    background:white;
+    display:inline-block;
+    padding:30px 40px;
+    border-radius:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.15);
+}
+</style>
+
+</head>
+<body>
+
+<div class="box">
+    <h2>⏳ Sedang Logout...</h2>
+    <p>Silakan tunggu sebentar ya 💖</p>
+</div>
+
+<script>
+// HAPUS DATA LOGIN (jika digunakan)
+localStorage.removeItem("isLogin");
+localStorage.removeItem("username");
+
+// HAPUS DATA BRIVA (opsional)
+localStorage.removeItem("brivaCode");
+
+// ARAHKAN KE LOGIN
+setTimeout(() => {
+    window.location.href = "login.html";
+}, 1200);
+</script>
+
+</body>
+</html>
